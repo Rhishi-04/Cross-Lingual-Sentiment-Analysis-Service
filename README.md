@@ -47,17 +47,26 @@ docker run -d -p 8000:8000 --name sentiment-service sentiment-service
 
 **POST** `/analyze`
 
+**Only `text` is required** - language is automatically detected!
+
 ```bash
 curl -X POST "http://localhost:8000/analyze" \
   -H "Content-Type: application/json" \
-  -d '{"text": "Je suis très heureux", "language": "auto"}'
+  -d '{"text": "Je suis très heureux"}'
 ```
 
-**Request:**
+**Request (minimal - only text needed):**
 ```json
 {
-  "text": "Je suis très heureux aujourd'hui",
-  "language": "auto"
+  "text": "Je suis très heureux aujourd'hui"
+}
+```
+
+**Optional:** You can specify language if needed:
+```json
+{
+  "text": "Je suis très heureux",
+  "language": "fr"
 }
 ```
 
@@ -90,9 +99,10 @@ curl -X POST "http://localhost:8000/analyze" \
 ```python
 import requests
 
+# Only text is needed - language is auto-detected
 response = requests.post(
     "http://localhost:8000/analyze",
-    json={"text": "Je suis très heureux", "language": "auto"}
+    json={"text": "Je suis très heureux"}
 )
 
 result = response.json()
@@ -103,12 +113,12 @@ print(f"Language: {result['detected_language']}")
 ### JavaScript
 
 ```javascript
+// Only text is needed - language is auto-detected
 const response = await fetch('http://localhost:8000/analyze', {
   method: 'POST',
   headers: {'Content-Type': 'application/json'},
   body: JSON.stringify({
-    text: 'Je suis très heureux',
-    language: 'auto'
+    text: 'Je suis très heureux'
   })
 });
 

@@ -5,10 +5,10 @@ from typing import Optional, Dict
 
 class SentimentRequest(BaseModel):
     """Request model for sentiment analysis."""
-    text: str = Field(..., description="Text to analyze for sentiment", min_length=1)
+    text: str = Field(..., description="Text to analyze for sentiment (language is automatically detected)", min_length=1)
     language: Optional[str] = Field(
         default="auto",
-        description="Language code (e.g., 'fr', 'es', 'de') or 'auto' for auto-detection"
+        description="Optional: Language code (e.g., 'fr', 'es', 'de') if you want to specify the language. Defaults to 'auto' for automatic detection. Usually not needed."
     )
 
 

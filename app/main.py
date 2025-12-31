@@ -73,11 +73,20 @@ async def analyze_sentiment(request: SentimentRequest):
     """
     Analyze sentiment of text in any language.
     
+    **Only the `text` parameter is required** - language is automatically detected.
+    
     The service will:
-    1. Detect the language of the input text (if not specified)
+    1. Automatically detect the language of the input text
     2. Translate to English if needed
     3. Analyze sentiment using a pre-trained model
     4. Return sentiment scores and metadata
+    
+    **Example request (only text needed):**
+    ```json
+    {
+      "text": "Je suis très heureux"
+    }
+    ```
     """
     try:
         # Get the sentiment analyzer
