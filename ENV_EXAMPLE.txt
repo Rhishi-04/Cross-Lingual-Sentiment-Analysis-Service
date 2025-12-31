@@ -1,0 +1,16 @@
+# Copy this file to .env and customize as needed
+# API Configuration
+API_HOST=0.0.0.0
+API_PORT=8000
+
+# Translation API Configuration
+# Google Translate doesn't require API key for basic usage
+# But you can set this if using paid version
+GOOGLE_TRANSLATE_API_KEY=
+
+# Sentiment Model Configuration
+SENTIMENT_MODEL_NAME=cardiffnlp/twitter-roberta-base-sentiment-latest
+
+# Logging
+LOG_LEVEL=INFO
+

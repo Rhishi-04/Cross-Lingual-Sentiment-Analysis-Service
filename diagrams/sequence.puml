@@ -1,0 +1,42 @@
+@startuml Sentiment Analysis Sequence Diagram
+
+actor Client
+participant "FastAPI Server" as FastAPI
+participant "Translation Service" as Translator
+participant "Google Translate" as Google
+participant "Sentiment Analyzer" as Sentiment
+database "Hugging Face Model" as Model
+
+Client -> FastAPI: POST /analyze\n{text, language}
+
+activate FastAPI
+FastAPI -> FastAPI: Validate Request
+
+alt Language is not English or auto-detect
+    FastAPI -> Translator: translate_to_english(text)
+    activate Translator
+    Translator -> Google: Translate to English
+    activate Google
+    Google --> Translator: Translated text
+    deactivate Google
+    Translator --> FastAPI: (translated_text, language_name, was_translated)
+    deactivate Translator
+else Language is English
+    Translator --> FastAPI: (original_text, "English", false)
+end
+
+FastAPI -> Sentiment: analyze(translated_text)
+activate Sentiment
+Sentiment -> Model: Run inference
+activate Model
+Model --> Sentiment: Sentiment scores\n{positive, negative, neutral}
+deactivate Model
+Sentiment --> FastAPI: {sentiment, confidence, scores}
+deactivate Sentiment
+
+FastAPI -> FastAPI: Build response
+FastAPI --> Client: JSON Response\n{sentiment, scores, detected_language, ...}
+deactivate FastAPI
+
+@enduml
+
