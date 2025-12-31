@@ -4,12 +4,12 @@ A REST API service that performs sentiment analysis on text in multiple language
 
 ## Features
 
-- 🌍 **Multi-language Support**: Automatically detects and translates text from 100+ languages
-- 🎯 **3-Class Sentiment Analysis**: Classifies text as positive, negative, or neutral
-- 🚀 **FastAPI**: Modern, fast, async REST API framework
-- 🐳 **Dockerized**: Easy deployment with Docker
-- 📊 **Detailed Scores**: Returns confidence scores for all sentiment classes
-- 📝 **Human-Readable Output**: Returns full language names (e.g., "French", "German") instead of codes
+-  **Multi-language Support**: Automatically detects and translates text from 100+ languages
+-  **3-Class Sentiment Analysis**: Classifies text as positive, negative, or neutral
+-  **FastAPI**: Modern, fast, async REST API framework
+-  **Dockerized**: Easy deployment with Docker
+-  **Detailed Scores**: Returns confidence scores for all sentiment classes
+-  **Human-Readable Output**: Returns full language names (e.g., "French", "German") instead of codes
 
 ## Technologies
 
